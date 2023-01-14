@@ -7,7 +7,7 @@ exports.isAuth = async function (req, res, next) {
     if (authHeader === undefined) {
       const err = new Error("Missing required authorization header");
       err.statusCode = 404;
-      next(err);
+      return next(err);
     }
     if (authHeader.split(" ").length > 1) {
       token = authHeader.split(" ")[1];
