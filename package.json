@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/MiHarsh/hireQ-2023#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "firebase": "^9.9.0",
     "firebase-admin": "^11.4.0"
   }

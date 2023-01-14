@@ -1,0 +1,28 @@
+li {
+    list-style: none;
+    margin: 1.2em 0;
+    background-color: #f55e3038;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 1.2em 1.5em;
+  }
+  li svg {
+    color: #f55321;
+  }
+  li svg:first-child {
+    font-size: 1.2em;
+    margin-right: 0.8em;
+  }
+  li p {
+    flex: 1;
+    font-size: 1.9rem;
+  }
+  li .actions {
+    justify-self: flex-end;
+    cursor: pointer;
+  }
+  li .actions .fa-spinner {
+    font-size: 2.2em;
+  }
+  

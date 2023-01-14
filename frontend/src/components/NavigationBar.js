@@ -49,12 +49,12 @@ export default function NavigationBar() {
 
           {currentUser && (
             <>
-              {/* <Nav.Link href="/dashboard" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
-                Dashboard
+              <Nav.Link href="/dashboard" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
+                Search
               </Nav.Link>
-              <Nav.Link href="/timetable" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
-                TimeTable
-              </Nav.Link> */}
+              <Nav.Link href="/Insights" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
+                Insights
+              </Nav.Link>
             </>
           )}
         </Nav>
