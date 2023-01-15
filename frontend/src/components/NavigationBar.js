@@ -52,6 +52,9 @@ export default function NavigationBar() {
               <Nav.Link href="/dashboard" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
                 Search
               </Nav.Link>
+              <Nav.Link href="/JdResult" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
+             Result
+              </Nav.Link>
               <Nav.Link href="/Insights" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
                 Insights
               </Nav.Link>
