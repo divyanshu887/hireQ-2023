@@ -2,6 +2,7 @@ const fs = require("fs");
 
 const puppeteerConf = {
   headless: false,
+  executablePath: "/usr/bin/google-chrome",
   args: ["--no-sandbox", "--disable-setuid-sandbox"],
   timeout: 100000,
 };
