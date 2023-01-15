@@ -63,16 +63,17 @@ def func():
     employees_details = db.child("employees/").get().val()
 
     # key value pair
-    results = []
+    results = {}
 
     for id, employeeData in employees_details.items():
         resume = resumeParse(employeeData)
         text = [resume, jd["description"]]
         count_matrix = cv.fit_transform(text)
         similarity_score = cosine_similarity(count_matrix)[0][1]
-        temp = {}
-        temp[id] = similarity_score
-        results.append(temp)
+        employeeData["similarity_score"] = similarity_score
+        # temp = {}
+        # temp[id] = similarity_score
+        results[id] = employeeData
 
     # print('Similarity score : ', similarity_score)
     print(input_json)
