@@ -23,14 +23,19 @@ const isAuth = require("./middleware/auth").isAuth;
 //initialize nodemailer
 mailer.createTransport();
 
+console.log("running")
+// use routes
+app.use("/api/status", require("./routes/status"));
+app.use("/api/empDetails", require("./routes/employee"));
+
 //auth middleware
 app.use(isAuth);
 
-// use routes
-app.use("/api/status", require("./routes/status"));
+
 app.use("/api/requestMail", require("./routes/mail"));
 app.use("/api", require("./routes/faculty"));
 app.use("/api", require("./routes/recruiters"));
+
 
 // upload JDs
 
