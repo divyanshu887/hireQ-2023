@@ -3,8 +3,6 @@ const path = require("path");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const pdfExport = require("./helpers/pdfExports");
-
 const firebase = require("./config/firebase-config");
 const mailer = require("./config/nodemailer-config");
 
