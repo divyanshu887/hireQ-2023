@@ -1,33 +1,36 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import './FileUpload.css';
-import axios from 'axios';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import "./FileUpload.css";
+import axios from "axios";
 
 const FileUpload = ({ files, setFiles, removeFile }) => {
-  const uploadHandler = event => {
+  const uploadHandler = (event) => {
     const file = event.target.files[0];
     if (!file) return;
     file.isUploading = true;
+    file.fileid = Date.now() + "-" + file.name;
     setFiles([...files, file]);
 
     // upload file
     const formData = new FormData();
-    formData.append('newFile', file, file.name);
+    formData.append("newFile", file, file.fileid);
     axios
-      .post('http://localhost:5000/api/upload', formData, {
+      .post("http://localhost:5000/api/upload", formData, {
         headers: {
-          authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+          authorization: "Bearer " + localStorage.getItem("accessToken"),
         },
       })
-      .then(res => {
+      .then((res) => {
         file.isUploading = false;
+        console.log(res, "hello");
+
         setFiles([...files, file]);
       })
-      .catch(err => {
+      .catch((err) => {
         // inform the user
         console.error(err);
-        removeFile(file.name);
+        removeFile(file.fileid);
       });
   };
 

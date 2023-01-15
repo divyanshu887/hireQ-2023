@@ -13,6 +13,8 @@ exports.isAuth = async function (req, res, next) {
       token = authHeader.split(" ")[1];
 
       const decodeToken = await admin.auth().verifyIdToken(token);
+      req.useralias = decodeToken.email.replace(".", "");
+      console.log(req.useralias);
       if (decodeToken) {
         return next();
       }

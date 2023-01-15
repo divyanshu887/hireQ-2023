@@ -3,6 +3,8 @@ const path = require("path");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
+const pdfExport = require("./helpers/pdfExports");
+
 const firebase = require("./config/firebase-config");
 const mailer = require("./config/nodemailer-config");
 
@@ -28,24 +30,26 @@ app.use(isAuth);
 app.use("/api/status", require("./routes/status"));
 app.use("/api/requestMail", require("./routes/mail"));
 app.use("/api", require("./routes/faculty"));
+app.use("/api", require("./routes/recruiters"));
 
 // upload JDs
 
-app.post("/api/upload", (req, res) => {
-  // use modules such as express-fileupload, Multer, Busboy
-  
-  setTimeout(() => {
-      console.log('file uploaded')
-      return res.status(200).json({ result: true, msg: 'file uploaded' });
-  }, 3000);
-});
+// app.post("/api/upload", uploadStorage.single("newFile"), (req, res) => {
+//   // use modules such as express-fileupload, Multer, Busboy
+//   //Omit option to extract all text from the pdf file
+//   console.log(req.file);
+//   pdfExport
+//     .GetTextFromPDF(req.file.path)
+//     .then((data) =>
+//       res.status(200).json({ result: true, msg: "file uploaded", data })
+//     );
+// });
 
-//delete JDs
-app.delete("/api/upload", (req, res) => {
-  console.log(`File deleted`)
-  return res.status(200).json({ result: true, msg: 'file deleted' });
-});
-
+// //delete JDs
+// app.delete("/api/upload", (req, res) => {
+//   console.log(`File deleted`);
+//   return res.status(200).json({ result: true, msg: "file deleted" });
+// });
 
 //error handler
 
@@ -53,6 +57,7 @@ app.use((error, req, res, next) => {
   const status = error.statusCode || 500;
   const message = error.message;
   const data = error.data;
+  console.log(error);
   res.status(status).json({ message: message, data: data });
 });
 
