@@ -541,12 +541,20 @@ const scrapeByProfile = async (page, url) => {
   await page.waitForSelector("button[aria-label='Dismiss']"); // <-- wait until it exists
   await page.click("button[aria-label='Dismiss']");
 
+  let skills = [];
   try {
     // extract skills
-    await page.goto(url + "/details/skills/", { waitUntil: waitUntil });
-    await page.waitForSelector(".mr1.hoverable-link-text.t-bold"); // <-- wait until it exists
+    // document.querySelector("#skills").parentElement.children[2].children[1].children[0].children[0].click()
 
-    const skills = await page.evaluate(() => {
+    // await page.goto(url + "/details/skills/", { waitUntil: waitUntil });
+    await page.waitForSelector("#skills"); // <-- wait until it exists
+
+    skills = await page.evaluate(() => {
+      // click to expand
+      document
+        .querySelector("#skills")
+        .parentElement.children[2].children[1].children[0].children[0].click();
+
       let temp = new Set();
       const skillDiv = document.querySelectorAll(
         ".mr1.hoverable-link-text.t-bold"
@@ -563,7 +571,6 @@ const scrapeByProfile = async (page, url) => {
       return Array.from(temp);
     });
   } catch (err) {
-    skills = [];
     console.log(err);
   }
 
@@ -572,7 +579,8 @@ const scrapeByProfile = async (page, url) => {
     userExperience: experiences,
     userEducation: rawUserEducation,
     contactInfo,
-    skills: skills || null,
+    skills: skills,
+    source: "linkedin",
   };
 
   return userData;
@@ -606,6 +614,60 @@ const scrapeByKeyword = async (page, keyword, depth = 1) => {
   return links;
 };
 
+const scrapeUpWork = async (page, url) => {
+  const waitUntil = ["load", "domcontentloaded"];
+
+  await page.goto(url, { waitUntil: waitUntil });
+
+  await page.waitForSelector(".up-card-section.up-card-hover");
+  const userData = await page.evaluate(() => {
+    let data = {};
+    const parentDiv = document.querySelectorAll(
+      ".up-card-section.up-card-hover"
+    );
+
+    for (let el = 0; el < parentDiv.length; el += 1) {
+      const id = parentDiv[el].attributes["data-test-key"].value.replace(
+        "null",
+        ""
+      );
+      const fullname = parentDiv[el].querySelector(".identity-name").innerText;
+      const title = parentDiv[el].querySelector(
+        ".my-0.freelancer-title"
+      ).innerText;
+      const location = parentDiv[el].querySelector(
+        "span[itemprop='country-name']"
+      ).innerText;
+      const description = parentDiv[el].querySelector(
+        ".up-line-clamp-v2.clamped"
+      ).innerText;
+      const profileImage = parentDiv[el].querySelector("img").href;
+      const skills = [];
+      const skilldiv =
+        parentDiv[el].querySelector(".up-skill-wrapper").children;
+
+      for (let sk = 0; sk < skilldiv.length; sk += 1) {
+        skills.push(skilldiv[sk].innerText);
+      }
+      data[id] = {
+        fullname,
+        title,
+        location,
+        description,
+        profileImage,
+        skills,
+        source: "upwork",
+        url: "https://www.upwork.com/freelancers/" + id,
+      };
+    }
+
+    return data;
+  });
+
+  console.log(userData);
+  return userData;
+};
+
 module.exports = {
   puppeteerConf,
   autoScroll,
@@ -622,4 +684,5 @@ module.exports = {
   formatDate,
   scrapeByProfile,
   scrapeByKeyword,
+  scrapeUpWork,
 };
