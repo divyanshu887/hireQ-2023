@@ -4,6 +4,7 @@ import { AuthProvider } from "../contexts/AuthContext";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from "./Dashboard/Dashboard";
 import JdResult from "./JdResult/JdResult";
+import JdHistory from "./JdHistory/JdHistory";
 import Insights from "./Insight/Insights";
 import Login from "./userAuth/Login";
 import PrivateRoute from "./PrivateRoute";
@@ -22,6 +23,7 @@ function App() {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PublicRoute exact path="/Insights" component={Insights} />
             <PublicRoute exact path="/JdResult" component={JdResult} />
+            <PublicRoute exact path="/JdHistory" component={JdHistory} />
             <PrivateRoute
               exact
               path="/update-profile"
