@@ -1,9 +1,9 @@
-import "./candidateDetails.css";
+import "./JdDetail.css";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
-function Detailmodal({ setOpenModal,empData }) {
+function Jdmodal({ setOpenModal,jdData }) {
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -17,26 +17,15 @@ function Detailmodal({ setOpenModal,empData }) {
           </button>
         </div>
         <div className="title">
-          <h1>Are You Sure You Want to Continue?</h1>
+          <h1>JD ID : {jdData.id}</h1> 
         </div>
         <div className="body">
-          {/* <h3>Name : {empData.name}</h3>
-          <h3> : {empData.name}</h3> */}
-        </div>
-        <div className="footer">
-          <button
-            onClick={() => {
-              setOpenModal(false);
-            }}
-            id="cancelBtn"
-          >
-            Cancel
-          </button>
-          <button>Continue</button>
+        <h5>Description : {jdData.description}</h5> 
         </div>
       </div>
     </div>
   );
 }
-export default Detailmodal
+export default Jdmodal
+
 

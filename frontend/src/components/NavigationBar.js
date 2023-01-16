@@ -56,7 +56,7 @@ export default function NavigationBar() {
              Result
               </Nav.Link>
               <Nav.Link href="/shortlist" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
-             screened
+             Shortlisted
               </Nav.Link>
               <Nav.Link href="/JdHistory" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
              History
