@@ -29,8 +29,7 @@ exports.scrapeKeyword = async (req, res, next) => {
 
     await page.setCookie({
       name: "li_at",
-      value:
-        "AQEDAS8PNLwCZ2gdAAABg-kf7zEAAAGF1UlAnE0AANR3HdCWgyVeXgiwZ44TTpzw7utJSdvqgIQ_6Oi1hTKUZ9NtM9bltooWyFf4RvGBfyr305r_q9g0QizeciiWM_5pRRLvXQVlVP6w_2gmTsc7W17H",
+      value: process.env.LINKEDIN_SESSION_KEY,
       domain: ".www.linkedin.com",
     });
 
