@@ -55,6 +55,9 @@ export default function NavigationBar() {
               <Nav.Link href="/JdResult" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
              Result
               </Nav.Link>
+              <Nav.Link href="/shortlist" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
+             screened
+              </Nav.Link>
               <Nav.Link href="/JdHistory" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
              History
               </Nav.Link>

@@ -6,7 +6,7 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 
-import JobDescription from './jobDescription';
+import Candidates from './candidate/candidate';
 
 const theme = createTheme({
     typography: {
@@ -45,17 +45,17 @@ const useStyles = makeStyles({
   },
 });
 
-function JdHistory() {
+function ShortlistedProfile() {
   const classes = useStyles();
 
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.appMain} >
-        <JobDescription />
+        <Candidates />
       </div>
       <CssBaseline />
     </ThemeProvider>
   );
 }
 
-export default JdHistory;
+export default ShortlistedProfile;
