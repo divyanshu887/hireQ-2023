@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./FileUpload.css";
 import axios from "axios";
+import { useAuth } from "../../../contexts/AuthContext";
 
 const FileUpload = ({ files, setFiles, removeFile }) => {
+  const { logout } = useAuth();
   const uploadHandler = (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -21,7 +23,10 @@ const FileUpload = ({ files, setFiles, removeFile }) => {
           authorization: "Bearer " + localStorage.getItem("accessToken"),
         },
       })
-      .then((res) => {
+      .then(async (res) => {
+        if (res.status === 401) {
+          await logout();
+        }
         file.isUploading = false;
         console.log(res, "hello");
 

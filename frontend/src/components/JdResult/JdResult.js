@@ -6,45 +6,43 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { Button, Link } from "@material-ui/core";
 import { useAuth } from "../../contexts/AuthContext";
 import Notification from "../utils/Notification";
-import { useParams } from "react-router-dom";
-import {
-  CssBaseline,
-  createTheme,
-  ThemeProvider,
-} from "@material-ui/core";
+import { CssBaseline, createTheme, ThemeProvider } from "@material-ui/core";
+import { useHistory, useParams } from "react-router-dom";
 
 const theme = createTheme({
   typography: {
-      fontSize: 26,
-    },
-    
-overrides: {
-  MuiAppBar: {
-    root: {
-      transform: 'translateZ(0)',
+    fontSize: 26,
+  },
+
+  overrides: {
+    MuiAppBar: {
+      root: {
+        transform: "translateZ(0)",
+      },
     },
   },
-},
-props: {
-  MuiIconButton: {
-    disableRipple: true,
+  props: {
+    MuiIconButton: {
+      disableRipple: true,
+    },
   },
-},
 });
 
 const useStyles = makeStyles({
-root: {
-  fontSize: 26,
-  marginLeft: "4%",
-  marginRight: "4%",
-  justifyContent: "center",
-}
+  root: {
+    fontSize: 26,
+    marginLeft: "4%",
+    marginRight: "4%",
+    justifyContent: "center",
+  },
 });
 
 function JdResult() {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
   const params = useParams();
   console.log("u", params);
+
+  const history = useHistory();
 
   const [employeeData, setEmployeeData] = useState(null);
   const [row, setRow] = useState([]);
@@ -101,7 +99,6 @@ function JdResult() {
       .catch((err) => console.log(err));
   }, []);
 
-
   const handleMailClick = (e) => {
     if (selectionModel.length > 0) {
       console.log("sent successfully", selectionModel);
@@ -132,7 +129,13 @@ function JdResult() {
       };
 
       fetch("http://localhost:5000/api/requestMail", requestOptions)
-        .then((res) => res.json())
+        .then(async (res) => {
+          if (res.status === 401) {
+            await logout();
+          }
+
+          return res.json();
+        })
         .then((data) => {
           console.log(data);
           setNotify({
@@ -148,6 +151,9 @@ function JdResult() {
             message: "Some Error Occured",
             type: "error",
           });
+          if (err.statusCode === 401) {
+            history.replace("/login");
+          }
         });
     }
   };
@@ -215,39 +221,39 @@ function JdResult() {
 
   return (
     <ThemeProvider theme={theme}>
-    <div style={{ height: "70vh", }}>
-      <Notification notify={notify} setNotify={setNotify} />
-      <div style={{  marginLeft: "40%" }}>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          className="ml-5 mb-4"
-          onClick={handleMailClick}
-        >
-          Send Email
-        </Button>
-      </div>
+      <div style={{ height: "70vh" }}>
+        <Notification notify={notify} setNotify={setNotify} />
+        <div style={{ marginLeft: "40%" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className="ml-5 mb-4"
+            onClick={handleMailClick}
+          >
+            Send Email
+          </Button>
+        </div>
 
-      {modalOpen && (
-        <Detailmodal setOpenModal={setModalOpen} empData={modaldata} />
-      )}
-      <DataGrid
-        rowHeight={70}
-        className={classes.root}
-        rows={row}
-        columns={columns}
-        pageSize={7}
-        checkboxSelection
-        onCellClick={handleCellClick}
-        onRowClick={handleRowClick}
-        onSelectionModelChange={(newSelectionModel) => {
-          setSelectionModel(newSelectionModel);
-        }}
-        selectionModel={selectionModel}
-      />
-    </div>
-    </ThemeProvider >
+        {modalOpen && (
+          <Detailmodal setOpenModal={setModalOpen} empData={modaldata} />
+        )}
+        <DataGrid
+          rowHeight={70}
+          className={classes.root}
+          rows={row}
+          columns={columns}
+          pageSize={7}
+          checkboxSelection
+          onCellClick={handleCellClick}
+          onRowClick={handleRowClick}
+          onSelectionModelChange={(newSelectionModel) => {
+            setSelectionModel(newSelectionModel);
+          }}
+          selectionModel={selectionModel}
+        />
+      </div>
+    </ThemeProvider>
   );
 }
 

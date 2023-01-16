@@ -1,8 +1,10 @@
 import axios from "axios";
 import React from "react";
+import { useAuth } from "../../../contexts/AuthContext";
 import FileItem from "./../FileItem/FileItem";
 
 const FileList = ({ files, removeFile }) => {
+  const { logout } = useAuth();
   const deleteFileHandler = (_name) => {
     axios
       .delete(`http://localhost:5000/api/upload/${_name}`, {
@@ -10,7 +12,13 @@ const FileList = ({ files, removeFile }) => {
           authorization: "Bearer " + localStorage.getItem("accessToken"),
         },
       })
-      .then((res) => removeFile(_name))
+      .then(async (res) => {
+        if (res.status === 401) {
+          await logout();
+        } else {
+          return removeFile(_name);
+        }
+      })
       .catch((err) => console.error(err));
   };
   return (

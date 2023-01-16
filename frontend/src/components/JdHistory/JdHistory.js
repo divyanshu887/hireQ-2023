@@ -48,12 +48,12 @@ const useStyles = makeStyles({
 
 function JdHistory() {
   const classes = useStyles();
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.appMain}>
-        <JobDescription currentUser={currentUser} />
+        <JobDescription currentUser={currentUser} logout={logout} />
       </div>
       <CssBaseline />
     </ThemeProvider>
