@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     textTransform: "uppercase",
     fontFamily:'Poppins',
     fontWeight:'800',
-    fontSize:'2rem'
+    fontSize:'4rem'
   }
 }));
 

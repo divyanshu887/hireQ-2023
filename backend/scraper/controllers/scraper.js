@@ -76,12 +76,15 @@ exports.scrapeKeywordUpWork = async (req, res, next) => {
       state: "active",
     });
 
-    for (let pg = 0; pg < pages; pg += 1) {
+    // https://www.upwork.com/search/profiles/?page=2&q=python
+    let scrapeData = []
+    for (let pg = 1; pg < pages+1; pg += 1) {
       for (let kw = 0; kw < keywords.length; kw += 1) {
         try {
           const url =
-            "https://www.upwork.com/search/profiles/?q=" + keywords[kw];
+            "https://www.upwork.com/search/profiles/?page="+ pg +"&q=" + keywords[kw];
           const pgData = await scrapeUpWork(page, url);
+          scrapeData.push(pgData)
           await db.ref("employees/").update(pgData);
         } catch (err) {
           console.log(err);
@@ -89,7 +92,7 @@ exports.scrapeKeywordUpWork = async (req, res, next) => {
       }
     }
 
-    res.json({ status: "scrapped successfully" });
+    res.json({ status: "scrapped successfully", data: scrapeData });
     await browser.close();
   } catch (err) {
     next(err);

@@ -1,35 +1,35 @@
-import React, { useState } from "react";
-import "firebase/storage";
-import { Navbar, Nav, Alert } from "react-bootstrap";
-import { useAuth } from "../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import 'firebase/storage';
+import { Navbar, Nav, Alert } from 'react-bootstrap';
+import { useAuth } from '../contexts/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 export default function NavigationBar() {
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const { currentUser, logout } = useAuth();
   const history = useHistory();
 
   async function handleLogout() {
-    setError("");
+    setError('');
 
     try {
       await logout();
       await localStorage.clear();
-      history.push("/login");
+      history.push('/login');
     } catch {
-      setError("Failed to log out");
+      setError('Failed to log out');
     }
   }
   return (
     <>
-      <Navbar style={{ backgroundColor: "#290AA0" }}>
+      <Navbar style={{ backgroundColor: '#290AA0' }}>
         <Navbar.Brand
           href="#"
           style={{
-            color: "#9d96ff",
-            fontSize: "20px",
-            marginTop: "0px",
-            marginBottom: "5px",
+            color: '#9d96ff',
+            fontSize: '20px',
+            marginTop: '0px',
+            marginBottom: '5px',
           }}
         >
           <img src="/logo.png" height="50px"></img>
@@ -38,11 +38,11 @@ export default function NavigationBar() {
           <Nav.Link
             href="/"
             style={{
-              color: "#ffffff",
-              fontSize: "17px",
-              fontWeight:"bold",
-              fontFamily: "open sans-serif",
-              marginRight: "20px",
+              color: '#ffffff',
+              fontSize: '17px',
+              fontWeight: 'bold',
+              fontFamily: 'open sans-serif',
+              marginRight: '20px',
             }}
           >
             Home
@@ -53,11 +53,11 @@ export default function NavigationBar() {
               <Nav.Link
                 href="/dashboard"
                 style={{
-                  color: "#ffffff",
-                  fontSize: "17px",
-                  fontWeight:"bold",
-                  fontFamily: "open sans-serif",
-                  marginRight: "20px",
+                  color: '#ffffff',
+                  fontSize: '17px',
+                  fontWeight: 'bold',
+                  fontFamily: 'open sans-serif',
+                  marginRight: '20px',
                 }}
               >
                 Search
@@ -68,11 +68,11 @@ export default function NavigationBar() {
               <Nav.Link
                 href="/shortlist"
                 style={{
-                  color: "#ffffff",
-                  fontSize: "17px",
-                  fontWeight:"bold",
-                  fontFamily: "open sans-serif",
-                  marginRight: "20px",
+                  color: '#ffffff',
+                  fontSize: '17px',
+                  fontWeight: 'bold',
+                  fontFamily: 'open sans-serif',
+                  marginRight: '20px',
                 }}
               >
                 Shortlisted
@@ -80,41 +80,42 @@ export default function NavigationBar() {
               <Nav.Link
                 href="/JdHistory"
                 style={{
-                  color: "#ffffff",
-                  fontSize: "17px",
-                  fontWeight:"bold",
-                  fontFamily: "open sans-serif",
-                  marginRight: "20px",
+                  color: '#ffffff',
+                  fontSize: '17px',
+                  fontWeight: 'bold',
+                  fontFamily: 'open sans-serif',
+                  marginRight: '20px',
                 }}
               >
                 History
               </Nav.Link>
-              <Nav.Link
-                href="/Insights"
-                style={{
-                  color: "#ffffff",
-                  fontSize: "17px",
-                  fontWeight:"bold",
-                  fontFamily: "open sans-serif",
-                  marginRight: "20px",
-                }}
-              >
-                Insights
-              </Nav.Link>
             </>
           )}
+          <Nav.Link
+            href="/Insights"
+            style={{
+              color: '#ffffff',
+              fontSize: '17px',
+              fontWeight: 'bold',
+              fontFamily: 'open sans-serif',
+              marginRight: '20px',
+            }}
+          >
+            Insights
+          </Nav.Link>
         </Nav>
+
         <Nav className="ml-auto">
           {currentUser ? (
             <>
               <Nav.Link
                 href="/update-profile"
                 style={{
-                  color: "#ffffff",
-                  fontSize: "17px",
-                  fontWeight:"bold",
-                  fontFamily: "open sans-serif",
-                  marginRight: "20px",
+                  color: '#ffffff',
+                  fontSize: '17px',
+                  fontWeight: 'bold',
+                  fontFamily: 'open sans-serif',
+                  marginRight: '20px',
                 }}
               >
                 Update Profile
@@ -123,11 +124,11 @@ export default function NavigationBar() {
                 href="#"
                 onClick={handleLogout}
                 style={{
-                  color: "#ffffff",
-                  fontSize: "17px",
-                  fontWeight:"bold",
-                  fontFamily: "open sans-serif",
-                  marginRight: "20px",
+                  color: '#ffffff',
+                  fontSize: '17px',
+                  fontWeight: 'bold',
+                  fontFamily: 'open sans-serif',
+                  marginRight: '20px',
                 }}
               >
                 Logout
@@ -138,11 +139,11 @@ export default function NavigationBar() {
               <Nav.Link
                 href="/login"
                 style={{
-                  color: "#ffffff",
-                  fontSize: "17px",
-                  fontWeight:"bold",
-                  fontFamily: "open sans-serif",
-                  marginRight: "20px",
+                  color: '#ffffff',
+                  fontSize: '17px',
+                  fontWeight: 'bold',
+                  fontFamily: 'open sans-serif',
+                  marginRight: '20px',
                 }}
               >
                 Login
@@ -150,11 +151,11 @@ export default function NavigationBar() {
               <Nav.Link
                 href="/register"
                 style={{
-                  color: "#ffffff",
-                  fontSize: "17px",
-                  fontWeight:"bold",
-                  fontFamily: "open sans-serif",
-                  marginRight: "20px",
+                  color: '#ffffff',
+                  fontSize: '17px',
+                  fontWeight: 'bold',
+                  fontFamily: 'open sans-serif',
+                  marginRight: '20px',
                 }}
               >
                 Register

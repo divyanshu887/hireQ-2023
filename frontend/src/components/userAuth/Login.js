@@ -69,7 +69,7 @@ export default function Login() {
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "100vh" }}
       >
-        <div className="w-100" style={{ maxWidth: "400px" }}>
+        <div className="w-100" style={{ maxWidth: "500px",fontSize:"2rem" }}>
           <Card>
             <Card.Body>
               <h2 className="text-center mb-4">Login</h2>
@@ -83,7 +83,7 @@ export default function Login() {
                   <Form.Label>Password</Form.Label>
                   <Form.Control type="password" ref={passwordRef} required />
                 </Form.Group>
-                <Button disabled={loading} className="w-100" type="submit">
+                <Button disabled={loading} className="w-100 btn-lg" type="submit">
                   Login
                 </Button>
               </Form>
@@ -104,7 +104,7 @@ export default function Login() {
             }}
           >
             OR
-            <Button onClick={handleClick}> Sign In With Google </Button>
+            <Button onClick={handleClick} className='btn-lg'> Sign In With Google </Button>
           </div>
         </div>
       </Container>

@@ -1,5 +1,5 @@
 .file-card {
-    padding: 1em;
+    /* padding: 1em; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,7 +45,7 @@
   .file-card .file-inputs button i {
     width: 1.5em;
     height: 1.5em;
-    padding: 0.4em;
+    /* padding: 0.4em; */
     background-color: #fff;
     color: #f55e30;
     border-radius: 50%;

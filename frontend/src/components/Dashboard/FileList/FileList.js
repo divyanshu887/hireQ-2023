@@ -1,30 +1,30 @@
-import axios from "axios";
-import React from "react";
-import { useAuth } from "../../../contexts/AuthContext";
-import FileItem from "./../FileItem/FileItem";
+import axios from 'axios';
+import React from 'react';
+import { useAuth } from '../../../contexts/AuthContext';
+import FileItem from './../FileItem/FileItem';
 
 const FileList = ({ files, removeFile }) => {
   const { logout } = useAuth();
-  const deleteFileHandler = (_name) => {
+  const deleteFileHandler = _name => {
     axios
       .delete(`http://localhost:5000/api/upload/${_name}`, {
         headers: {
-          authorization: "Bearer " + localStorage.getItem("accessToken"),
+          authorization: 'Bearer ' + localStorage.getItem('accessToken'),
         },
       })
-      .then(async (res) => {
+      .then(async res => {
         if (res.status === 401) {
           await logout();
         } else {
           return removeFile(_name);
         }
       })
-      .catch((err) => console.error(err));
+      .catch(err => console.error(err));
   };
   return (
-    <ul className="file-list">
+    <ul className="file-list p-0" style={{ minWidth: '300px' }}>
       {files &&
-        files.map((f) => (
+        files.map(f => (
           <FileItem key={f.name} file={f} deleteFile={deleteFileHandler} />
         ))}
     </ul>
