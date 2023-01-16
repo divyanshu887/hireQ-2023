@@ -23,9 +23,9 @@ function App() {
             <PublicRoute exact path="/" component={Home} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PublicRoute exact path="/Insights" component={Insights} />
-            <PublicRoute exact path="/JdResult/:jdname" component={JdResult} />
+            <PrivateRoute exact path="/JdResult/:jdname" component={JdResult} />
             <PrivateRoute exact path="/JdHistory" component={JdHistory} />
-            <PublicRoute
+            <PrivateRoute
               exact
               path="/shortlist"
               component={ShortlistedProfile}

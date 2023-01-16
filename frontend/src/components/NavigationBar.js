@@ -32,7 +32,7 @@ export default function NavigationBar() {
             marginBottom: "5px",
           }}
         >
-          <img src="logo.png" height="50px"></img>
+          <img src="/logo.png" height="50px"></img>
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link
@@ -49,19 +49,51 @@ export default function NavigationBar() {
 
           {currentUser && (
             <>
-              <Nav.Link href="/dashboard" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
+              <Nav.Link
+                href="/dashboard"
+                style={{
+                  color: "#ffffff",
+                  fontSize: "17px",
+                  fontFamily: " sans-serif",
+                  marginRight: "20px",
+                }}
+              >
                 Search
               </Nav.Link>
-              <Nav.Link href="/JdResult" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
+              {/* <Nav.Link href="/JdResult" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
              Result
+              </Nav.Link> */}
+              <Nav.Link
+                href="/shortlist"
+                style={{
+                  color: "#ffffff",
+                  fontSize: "17px",
+                  fontFamily: " sans-serif",
+                  marginRight: "20px",
+                }}
+              >
+                Shortlisted
               </Nav.Link>
-              <Nav.Link href="/shortlist" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
-             Shortlisted
+              <Nav.Link
+                href="/JdHistory"
+                style={{
+                  color: "#ffffff",
+                  fontSize: "17px",
+                  fontFamily: " sans-serif",
+                  marginRight: "20px",
+                }}
+              >
+                History
               </Nav.Link>
-              <Nav.Link href="/JdHistory" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
-             History
-              </Nav.Link>
-              <Nav.Link href="/Insights" style={{ color: "#ffffff",fontSize:"17px",fontFamily:" sans-serif",marginRight:"20px" }}>
+              <Nav.Link
+                href="/Insights"
+                style={{
+                  color: "#ffffff",
+                  fontSize: "17px",
+                  fontFamily: " sans-serif",
+                  marginRight: "20px",
+                }}
+              >
                 Insights
               </Nav.Link>
             </>

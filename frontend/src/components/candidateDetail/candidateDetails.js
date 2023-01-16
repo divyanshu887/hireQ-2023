@@ -3,10 +3,23 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
-function Detailmodal({ setOpenModal,empData }) {
+function Detailmodal({ setOpenModal, empData }) {
+  console.log(empData);
+  let description = "";
+  let skills = "";
+  if (empData.source === "linkedin") {
+    description = empData["profileData"]["description"];
+    skills = empData["skills"];
+  } else if (empData.source === "upwork") {
+    description = empData["description"];
+    skills = empData["skills"];
+  }
+
+  console.log(description);
+
   return (
     <div className="modalBackground">
-      <div className="modalContainer">
+      <div className="modalCont">
         <div className="titleCloseBtn">
           <button
             onClick={() => {
@@ -16,27 +29,18 @@ function Detailmodal({ setOpenModal,empData }) {
             X
           </button>
         </div>
-        <div className="title">
-          <h1>Are You Sure You Want to Continue?</h1>
-        </div>
-        <div className="body">
-          {/* <h3>Name : {empData.name}</h3>
-          <h3> : {empData.name}</h3> */}
-        </div>
-        <div className="footer">
-          <button
-            onClick={() => {
-              setOpenModal(false);
-            }}
-            id="cancelBtn"
-          >
-            Cancel
-          </button>
-          <button>Continue</button>
+        <ul className="row">
+          {skills.map((d) => (
+            <li key={d}>{d}</li>
+          ))}
+
+          {/* <h5>Skills : {skills}</h5> */}
+        </ul>
+        <div className="row">
+          <h5>Description : {description}</h5>
         </div>
       </div>
     </div>
   );
 }
-export default Detailmodal
-
+export default Detailmodal;

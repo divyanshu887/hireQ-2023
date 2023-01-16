@@ -15,6 +15,7 @@ function JdResult() {
 
   const [employeeData, setEmployeeData] = useState(null);
   const [row, setRow] = useState([]);
+  const [modaldata, setModalData] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectionModel, setSelectionModel] = React.useState([]);
   const [notify, setNotify] = useState({
@@ -79,7 +80,7 @@ function JdResult() {
   );
 
   const handleMailClick = (e) => {
-    if (selectionModel.length >= 0) {
+    if (selectionModel.length > 0) {
       console.log("sent successfully", selectionModel);
       const mails = [];
       for (let i = 0; i < selectionModel.length; i += 1) {
@@ -164,8 +165,11 @@ function JdResult() {
               variant="contained"
               color="primary"
               size="large"
-              onClick={() => {
+              id={cellValues.row.id}
+              onClick={(e) => {
+                console.log(e.target, e.target.id, cellValues.row.id);
                 setModalOpen(true);
+                setModalData(employeeData["result"][cellValues.row.id]);
               }}
             >
               View Detail
@@ -184,6 +188,7 @@ function JdResult() {
   ];
   const classes = useStyles();
   console.log(selectionModel, employeeData, row);
+  console.log(modaldata);
 
   return (
     <div style={{ height: "70vh", width: "100%" }}>
@@ -200,7 +205,9 @@ function JdResult() {
         </Button>
       </div>
 
-      {modalOpen && <Detailmodal setOpenModal={setModalOpen} />}
+      {modalOpen && (
+        <Detailmodal setOpenModal={setModalOpen} empData={modaldata} />
+      )}
       <DataGrid
         rowHeight={70}
         className={classes.root}
