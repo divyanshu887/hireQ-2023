@@ -9,15 +9,11 @@ router.post("/", (req, res, next) => {
   var mailOptions = {
     from: process.env.MAIL_USERNAME, // sender address
     to: req.body.userMail, // list of receivers
-    subject: "Request for Slot Change of Course Code: " + req.body.subCode, // Subject line
+    subject: "Congrats !! Your profile has been shortlisted", // Subject line
     html:
-      `Hello,<br>The course instructor of course <b>` +
-      req.body.requestedBy +
-      `</b> has requested you to change your slot of <b>` +
-      req.body.subCode +
-      `</b> scheduled at <b>` +
-      req.body.time +
-      `</b> to prevent clash with the class they want to schedule.`, // plaintext body
+      `Hello,` +
+      `</b>Congrats, your profile has been shortlisted for hireQuotient.` +
+      `</b></b> This is system generated email, please do not reply to this email`, // plaintext body
     //html: "<b>Hello world ✔</b>", // html body
   };
 
@@ -30,7 +26,7 @@ router.post("/", (req, res, next) => {
       next(err);
     } else {
       console.log("Email sent ");
-      res.end("Email Sent successfully");
+      res.status(200).json({ message: "Email Sent successfully" });
     }
   });
 });

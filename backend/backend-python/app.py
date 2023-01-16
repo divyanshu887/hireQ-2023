@@ -34,7 +34,7 @@ def hello():
     # return '<h1>Hello, World!</h1>'
 
 
-def resumeParse(data):
+def parseLinkedinDataToString(data):
     res = ""
     if "profileData" in data:
         if "description" in data["profileData"]:
@@ -48,6 +48,19 @@ def resumeParse(data):
             res += data["userEducation"]["degreeName"]
     if "skills" in data:
         res += " "
+        res += " ".join(data["skills"])
+    return res
+
+
+def parseUpworkDataToString(data):
+    res = ""
+    if "description" in data:
+        res += data["description"]
+    if "location" in data:
+        res += data["location"]
+    if "title" in data:
+        res += data["title"]
+    if "skills" in data:
         res += " ".join(data["skills"])
     return res
 
@@ -66,7 +79,12 @@ def func():
     results = {}
 
     for id, employeeData in employees_details.items():
-        resume = resumeParse(employeeData)
+        if employeeData["source"] == "upwork":
+            resume = parseUpworkDataToString(employeeData)
+        elif employeeData["source"] == "linkedin":
+            resume = parseLinkedinDataToString(employeeData)
+        else:
+            resume = ""
         text = [resume, jd["description"]]
         count_matrix = cv.fit_transform(text)
         similarity_score = cosine_similarity(count_matrix)[0][1]
