@@ -7,6 +7,39 @@ import { Button, Link } from "@material-ui/core";
 import { useAuth } from "../../contexts/AuthContext";
 import Notification from "../utils/Notification";
 import { useParams } from "react-router-dom";
+import {
+  CssBaseline,
+  createTheme,
+  ThemeProvider,
+} from "@material-ui/core";
+
+const theme = createTheme({
+  typography: {
+      fontSize: 26,
+    },
+    
+overrides: {
+  MuiAppBar: {
+    root: {
+      transform: 'translateZ(0)',
+    },
+  },
+},
+props: {
+  MuiIconButton: {
+    disableRipple: true,
+  },
+},
+});
+
+const useStyles = makeStyles({
+root: {
+  fontSize: 26,
+  marginLeft: "4%",
+  marginRight: "4%",
+  justifyContent: "center",
+}
+});
 
 function JdResult() {
   const { currentUser } = useAuth();
@@ -68,16 +101,6 @@ function JdResult() {
       .catch((err) => console.log(err));
   }, []);
 
-  const useStyles = makeStyles((theme) =>
-    createStyles({
-      root: {
-        fontSize: "2rem",
-        marginLeft: "4%",
-        marginRight: "4%",
-        justifyContent: "center",
-      },
-    })
-  );
 
   const handleMailClick = (e) => {
     if (selectionModel.length > 0) {
@@ -191,9 +214,10 @@ function JdResult() {
   console.log(modaldata);
 
   return (
-    <div style={{ height: "70vh", width: "100%" }}>
+    <ThemeProvider theme={theme}>
+    <div style={{ height: "70vh", }}>
       <Notification notify={notify} setNotify={setNotify} />
-      <div style={{ width: "100%", marginLeft: "40%" }}>
+      <div style={{  marginLeft: "40%" }}>
         <Button
           variant="contained"
           color="primary"
@@ -223,6 +247,7 @@ function JdResult() {
         selectionModel={selectionModel}
       />
     </div>
+    </ThemeProvider >
   );
 }
 

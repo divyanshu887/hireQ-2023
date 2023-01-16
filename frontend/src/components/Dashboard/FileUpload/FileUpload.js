@@ -47,7 +47,7 @@ const FileUpload = ({ files, setFiles, removeFile }) => {
           </button>
         </div>
 
-        <p className="main">Supported files</p>
+        <h4 className="main">Supported files</h4>
         <p className="info">PDF</p>
       </div>
     </>

@@ -35,7 +35,7 @@ export default function Home() {
                 </div>
                 <div className="hButton">
                   <Button
-                    className="sButton"
+                    className="sButton ml-5 pl-5"
                     variant="contained"
                     onClick={handleClick}
                   >

@@ -40,7 +40,8 @@ export default function NavigationBar() {
             style={{
               color: "#ffffff",
               fontSize: "17px",
-              fontFamily: " sans-serif",
+              fontWeight:"bold",
+              fontFamily: "open sans-serif",
               marginRight: "20px",
             }}
           >
@@ -54,7 +55,8 @@ export default function NavigationBar() {
                 style={{
                   color: "#ffffff",
                   fontSize: "17px",
-                  fontFamily: " sans-serif",
+                  fontWeight:"bold",
+                  fontFamily: "open sans-serif",
                   marginRight: "20px",
                 }}
               >
@@ -68,7 +70,8 @@ export default function NavigationBar() {
                 style={{
                   color: "#ffffff",
                   fontSize: "17px",
-                  fontFamily: " sans-serif",
+                  fontWeight:"bold",
+                  fontFamily: "open sans-serif",
                   marginRight: "20px",
                 }}
               >
@@ -79,7 +82,8 @@ export default function NavigationBar() {
                 style={{
                   color: "#ffffff",
                   fontSize: "17px",
-                  fontFamily: " sans-serif",
+                  fontWeight:"bold",
+                  fontFamily: "open sans-serif",
                   marginRight: "20px",
                 }}
               >
@@ -90,7 +94,8 @@ export default function NavigationBar() {
                 style={{
                   color: "#ffffff",
                   fontSize: "17px",
-                  fontFamily: " sans-serif",
+                  fontWeight:"bold",
+                  fontFamily: "open sans-serif",
                   marginRight: "20px",
                 }}
               >
@@ -107,7 +112,8 @@ export default function NavigationBar() {
                 style={{
                   color: "#ffffff",
                   fontSize: "17px",
-                  fontFamily: " sans-serif",
+                  fontWeight:"bold",
+                  fontFamily: "open sans-serif",
                   marginRight: "20px",
                 }}
               >
@@ -119,7 +125,8 @@ export default function NavigationBar() {
                 style={{
                   color: "#ffffff",
                   fontSize: "17px",
-                  fontFamily: " sans-serif",
+                  fontWeight:"bold",
+                  fontFamily: "open sans-serif",
                   marginRight: "20px",
                 }}
               >
@@ -133,7 +140,8 @@ export default function NavigationBar() {
                 style={{
                   color: "#ffffff",
                   fontSize: "17px",
-                  fontFamily: " sans-serif",
+                  fontWeight:"bold",
+                  fontFamily: "open sans-serif",
                   marginRight: "20px",
                 }}
               >
@@ -144,7 +152,8 @@ export default function NavigationBar() {
                 style={{
                   color: "#ffffff",
                   fontSize: "17px",
-                  fontFamily: " sans-serif",
+                  fontWeight:"bold",
+                  fontFamily: "open sans-serif",
                   marginRight: "20px",
                 }}
               >
