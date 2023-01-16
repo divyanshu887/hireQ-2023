@@ -1,41 +1,43 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-
-import Card from "react-bootstrap/Card";
+import React from 'react';
+import { Button } from '@material-ui/core';
+import { Row, Col } from 'react-bootstrap';
+import './Home.css';
 
 export default function Home() {
-  const history = useHistory();
   return (
-    <div className="align-items-center justify-content-center">
-      <Container>
+    <div
+      className="align-items-center justify-content-center mHome"
+      style={{
+        backgroundImage: 'url(objects.png)',
+        backgroundSize: 'auto',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'right',
+      }}
+    >
+      <div className="contain">
         <Row>
           <Col>
-            <Card
-              className="mt-5 mx-auto pb-5 pt-5"
-              style={{
-                boxShadow: "1px 2px 9px #5621f4",
-                maxWidth: "500px",
-                minWidth: "300px",
-                // width: "30vw",
-                minHeight: "60vh",
-                maxHeight: "70vh",
-                fontFamily: "QuickSand",
-                backgroundColor: "#4f4fff14 ",
-              }}
-            >
-              <Card.Body>
-                <Card.Title className="text-left">
-                  <h1>Reschedule TT </h1>
-                </Card.Title>
-                <Card.Text className="text-left pl-4">
-                  TIme Table HOME TAB
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            <div className="home">
+              <div className="mainHome">
+                <div className="hTitle">
+                  <p className="hTitleContent"> HIREQ-2023</p>
+                </div>
+                <div className="hDiscription">
+                  <p className="hDisContent">
+                    {' '}
+                    Search Engine To Make Hiring Hustle Free{' '}
+                  </p>
+                </div>
+                <div className="hButton">
+                  <Button className="sButton" variant="contained">
+                    Find Candidates
+                  </Button>
+                </div>
+              </div>
+            </div>
           </Col>
         </Row>
-      </Container>
+      </div>
     </div>
   );
 }

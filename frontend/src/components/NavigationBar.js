@@ -32,7 +32,7 @@ export default function NavigationBar() {
             marginBottom: "5px",
           }}
         >
-          <img src="iitism_logo.webp" height="50px"></img>
+          <img src="logo.png" height="50px"></img>
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link
