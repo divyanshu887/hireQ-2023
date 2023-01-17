@@ -7,25 +7,8 @@ import {
   ArgumentAxis,
   ValueAxis,
   BarSeries,
-  Title,
-  Legend,
 } from '@devexpress/dx-react-chart-material-ui';
 import { Stack, Animation } from '@devexpress/dx-react-chart';
-
-const Root = props => (
-  <Legend.Root
-    {...props}
-    sx={{
-      display: 'flex',
-      margin: 'auto',
-      flexDirection: 'row',
-      fontSize: '1.4rem',
-    }}
-  />
-);
-const Label = props => (
-  <Legend.Label {...props} sx={{ whiteSpace: 'nowrap' }} />
-);
 
 const database = [
   {
@@ -56,19 +39,16 @@ const database = [
 
 function BarChart() {
   return (
-    <Paper>
+    <Paper style={{fontSize:"40px"}}>
       <Chart data={database} rotated="true">
         <ArgumentAxis />
-        <ValueAxis max={2400} />
-
+        <ValueAxis   />
         <BarSeries
-          name="popular Skills "
+        color="#205295"
           valueField="Count"
           argumentField="Skill"
-          color="#205295"
         />
         <Animation />
-        <Legend position="bottom" rootComponent={Root} labelComponent={Label} />
         <Stack />
       </Chart>
     </Paper>
