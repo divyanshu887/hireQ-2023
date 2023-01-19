@@ -1,3 +1,5 @@
+import nltk
+from rake_nltk import Rake
 from dotenv import load_dotenv
 import os
 import pyrebase
@@ -7,7 +9,18 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 cv = CountVectorizer()
 
+try:
+    nltk.data.find('stopwords.zip')
+except LookupError:
+    nltk.download('stopwords')
 
+try:
+    nltk.data.find('punkt.zip')
+except LookupError:
+    nltk.download('punkt')
+
+
+r = Rake(max_length=3, include_repeated_phrases=False)
 load_dotenv()
 
 firebaseConfig = {
@@ -96,6 +109,20 @@ def func():
     # print('Similarity score : ', similarity_score)
     print(input_json)
     return {"result": results}
+
+
+@app.route('/scanKeywords', methods=["POST"])
+@cross_origin(supports_credentials=True)
+def scanKeywords():
+    input_json = request.get_json(force=True)
+    text = input_json["text"]
+
+    # Extraction given the text.
+    r.extract_keywords_from_text(text)
+
+    # To get keyword phrases ranked highest to lowest with scores.
+    keys = r.get_ranked_phrases_with_scores()
+    return {"keywords": keys}
 
 
 PORT = os.getenv("BACKEND_PYTHON_PORT") or 9999
