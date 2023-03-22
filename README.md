@@ -31,7 +31,11 @@
 ### Parsing PDFs
 
 * We used `pdfjs-dist` library, a web standards-based platform for parsing and rendering PDFs, to obtain the text from the job description.
-*  The unique keywords from all the uploaded JDs are then used to scrape data from the sources
+*  The unique keywords from all the uploaded JDs are then used to scrape data from the sources.
+
+### Extracting Keywords
+
+* We used `RAKE` (Rapid Automatic Keyword Extraction algorithm), a domain independent keyword extraction algorithm which tries to determine key phrases in a body of text by analyzing the frequency of word appearance and its co-occurance with other words in the text.
 
 ## Tools and Technology
 
